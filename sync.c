@@ -26,10 +26,12 @@ int led_cmd[10] = {0,0,1,0,0,0,0,1,0,0}; //init and center light
 int anim_cmd[10] = {0,0,1,0,0,0,0,1,0,1}; //startup animation
 int sync_cmd[10] = {0,0,0,0,0,0,0,1,0,0}; //sync process
 
-int main (void) 
-{
+void sleepMS(int msecs){
+	usleep(ms*1000); //convert to microseconds
+	return;
+}
 
-	void sendData(int cmd_do[]){
+void sendData(int cmd_do[]){
 	pinMode(data_pin, OUTPUT);
 	digitalWrite(data_pin, 0);
 	int prev = 1;
@@ -46,24 +48,25 @@ int main (void)
 	pinMode(data_pin, INPUT);
 	}
 	
-	void initLEDs(){
+void initLEDs(){
 	sendData(led_cmd);
-	sleep(50);
+	sleepMS(50);
 	sendData(anim_cmd);
-	sleep(50);
+	sleepMS(50);
 	}
 
-	void wakeUp(){
-	 sync_enable = 1;
-	}
-
-	void sleepNow(){
-	set
-	}
-
-
-
-
+int main (void) 
+{
+  //this is the setup portion of the arduino code
+  pinMode(sync_pin, INPUT);
+  digitalWrite(sync_pin,1);
+  pinMode(data_pin, INPUT);
+  pinMode(clock_pin, INPUT);
+  sleepMS(2000); //2 seconds
+  
+  initLEDs();
+	
+	
 	return 0;
 
 }
