@@ -26,21 +26,17 @@ int led_cmd[10] = {0,0,1,0,0,0,0,1,0,0}; //init and center light
 int anim_cmd[10] = {0,0,1,0,0,0,0,1,0,1}; //startup animation
 int sync_cmd[10] = {0,0,0,0,0,0,0,1,0,0}; //sync process
 
-void sleepMS(int msecs){
-	usleep(ms*1000); //convert to microseconds
-	return;
-}
-
 void sendData(int cmd_do[]){
 	pinMode(data_pin, OUTPUT);
 	digitalWrite(data_pin, 0);
 	int prev = 1;
-	for(int = 0; i < 10; i++){
+	int i;
+	for(i = 0; i < 10; i++){
 		while (prev == digitalRead(clock_pin)){} //pause until there is a change in clock
 		prev = digitalRead(clock_pin);
 		digitalWrite(data_pin, cmd_do[i]);
 
-		while (prrrev == digitalRead(clock_pin)){}
+		while (prev == digitalRead(clock_pin)){}
 		prev = digitalRead(clock_pin);
 
 		}
@@ -50,23 +46,23 @@ void sendData(int cmd_do[]){
 	
 void initLEDs(){
 	sendData(led_cmd);
-	sleepMS(50);
+	delay(50);
 	sendData(anim_cmd);
-	sleepMS(50);
+	delay(50);
 	}
 
-int main (void) 
+int main() 
 {
+printf("initializing gpio");
+
   //this is the setup portion of the arduino code
   pinMode(sync_pin, INPUT);
   digitalWrite(sync_pin,1);
   pinMode(data_pin, INPUT);
   pinMode(clock_pin, INPUT);
-  sleepMS(2000); //2 seconds
-  
-  initLEDs();
-	
-	
-	return 0;
+
+  printf("Starting LEDs");
+  initLEDs();	
+return 0;
 
 }
