@@ -18,9 +18,9 @@ This program requires wiringPi be installed.
 #include <wiringPi.h>
 #include <stdio.h>
 
-#define sync_pin 21  //pin 5 on module (red)
-#define data_pin 20 //pin 6 on module (white)
-#define clock_pin 26 //pin 7 on module. (blue)
+#define sync_pin 11  //pin 5 on module (red)
+#define data_pin 10 //pin 6 on module (white)
+#define clock_pin 14 //pin 7 on module. (blue)
 
 int led_cmd[10] = {0,0,1,0,0,0,0,1,0,0}; //init and center light
 int anim_cmd[10] = {0,0,1,0,0,0,0,1,0,1}; //startup animation
